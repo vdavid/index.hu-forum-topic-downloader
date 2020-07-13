@@ -1,0 +1,4 @@
+body { max-width: 1000px; margin:0 auto; font-family: sans-serif; }
+.comment .header { padding:1em 1em 0.5em 1em; background-color:burlywood; }
+.comment .body { padding:0.5em 1em 1em 1em; background-color:antiquewhite; }
+.comment { margin-bottom:1em; }
