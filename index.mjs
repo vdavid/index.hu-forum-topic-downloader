@@ -14,7 +14,7 @@ import IndexHuForumCommentSaver from './IndexHuForumCommentSaver.mjs';
  */
 async function downloadAndSaveTopicToFile(topicId, fileName) {
     const downloader = new IndexHuForumPageDownloader(https, zlib.createGunzip(), iconv.Iconv);
-    const parser = new IndexHuForumPageParser(downloader, 500);
+    const parser = new IndexHuForumPageParser(downloader, 500, 3000);
     const saver = new IndexHuForumCommentSaver(fs);
     console.log('Getting comments...');
     const comments = await parser.getAllCommentsAsJson(topicId);
