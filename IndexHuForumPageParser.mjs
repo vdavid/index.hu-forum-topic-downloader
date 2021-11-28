@@ -24,7 +24,8 @@ export default class IndexHuForumPageParser {
      */
     async getAllCommentsAsJson(topicId) {
         const commentSources = await this._getCommentSources(topicId);
-        return commentSources.map(this._parseHtmlSourceToComment);
+        const commentSourcesAscending = [...commentSources].reverse();
+        return commentSourcesAscending.map(this._parseHtmlSourceToComment);
     }
 
     /**
@@ -38,7 +39,7 @@ export default class IndexHuForumPageParser {
         const commentSources = [];
         while (currentIndex < commentCount) {
             const pageSource = await this._downloader.getPage(topicId, this._commentsPerPage, currentIndex);
-            commentSources.unshift(...this._getCommentsFromPage(pageSource));
+            commentSources.push(...this._getCommentsFromPage(pageSource));
             currentIndex += this._commentsPerPage;
             await this._sleep(this._waitBetweenRequestsMs)
         }
